@@ -187,7 +187,8 @@ void PrecargarPalabras() {
     while (salir != 1) {
         Console.Write("Introduzca la palabra "+ cont +":");
         cont++;
-        string read = Console.ReadLine();
+        // Operador de fusión nula para evitar Warnings
+        string read = Console.ReadLine() ?? "";
         if (read == "1")
             salir = 1;
         else
@@ -201,7 +202,8 @@ string SeleccionarPalabraAleatoria() {
     string[] wordsSplit = words.Split(' ');
 
     Random random = new Random();
-    int randInt = random.Next(words.Length);
+    // nº aleatorio, max el nº de palabras divididas
+    int randInt = random.Next(wordsSplit.Length);
 
     return wordsSplit[randInt];
 }
@@ -237,7 +239,8 @@ char SolicitarLetra() {
     while (!checkLetter) {
         Console.WriteLine("-------------------\n" +
                           "Introduce una letra: ");
-        string input = Console.ReadLine();
+        // Operador de fusión nula para evitar Warnings
+        string input = Console.ReadLine() ?? "";
 
         if (input.Length == 1 && char.IsLetter(input[0])) {
             letter = char.ToLower(input[0]); // Convertir a minúsculas
